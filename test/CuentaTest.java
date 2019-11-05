@@ -41,7 +41,7 @@ public class CuentaTest {
     public void testRetirar(){
         System.out.println("Retirar test");
         c.Retirar(1000.0);
-        assertTrue(c.getSaldo()==0.0);
+        assertTrue(c.getSaldo()==-1000.0);
     }
     
     // TODO add test methods here.
