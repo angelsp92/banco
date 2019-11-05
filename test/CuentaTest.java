@@ -15,12 +15,13 @@ import org.junit.Before;
  * @author usuario
  */
 public class CuentaTest {
-    private Cuenta c;
+    private static Cuenta c;
+    
     public CuentaTest() {
     }
     
     @Before
-    public static void setUp() {
+    public void setUp() {
         System.out.println("Set up");
         c = new Cuenta("0001.0002.12.1234567890","Fulano de Tal");
     }
@@ -32,7 +33,7 @@ public class CuentaTest {
     @Test
     public void testIngresar(){
         System.out.println("Ingresar test");
-        c.Ingresar();
+        c.Ingresar(1000.0);
         assertTrue(c.getSaldo()==1000.0);
     }
     
@@ -40,7 +41,7 @@ public class CuentaTest {
     public void testRetirar(){
         System.out.println("Retirar test");
         c.Retirar(1000.0);
-        assertTrue(c.getSaldo()==1000.0);
+        assertTrue(c.getSaldo()==0.0);
     }
     
     // TODO add test methods here.
