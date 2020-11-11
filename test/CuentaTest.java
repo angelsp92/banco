@@ -1,29 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
-/**
- *
- * @author usuario
- */
+
 public class CuentaTest {
     private static Cuenta c;
     
     public CuentaTest() {
     }
     
-    @Before
-    public void setUp() {
-        System.out.println("Set up");
-        c = new Cuenta("0001.0002.12.1234567890","Fulano de Tal");
+    @BeforeClass
+    public static void setUpClass() {
+        System.out.println("Inicio Clase CuentaTest");
+        c = new Cuenta();
     }
     
     @AfterClass
@@ -31,22 +22,48 @@ public class CuentaTest {
     }
     
     @Test
-    public void testIngresar(){
-        System.out.println("Ingresar test");
-        c.Ingresar(1000.0);
-        assertTrue(c.getSaldo()==1000.0);
+    public void testIngresar1() {
+        System.out.println("Test1: Ingresar cantidad positica");
+        double saldo = 0;
+        double ingreso = 100.0;
+        assertTrue((saldo+ingreso)==100.0);
+        //fail("The test case is a prototype.");
     }
     
     @Test
-    public void testRetirar(){
-        System.out.println("Retirar test");
-        c.Retirar(1000.0);
-        assertTrue(c.getSaldo()==-1000.0);
+    public void testIngresar2() {
+        System.out.println("Test2: Ingresar cantidad negativa (Error)");
+        double saldo = 0;
+        double ingreso = -100.0;
+        assertTrue((saldo)==0.0);
+        //fail("The test case is a prototype.");
     }
     
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testRetirar1(){
+        System.out.println("Test3: Retirar cantidad positiva menos saldo actual");
+        double saldo = 100.0;
+        double retirar = 50.0;
+        assertTrue((saldo-retirar)==50.0);
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testRetirar2(){
+        System.out.println("Test4: Retirar cantidad positiva mayor saldo actual (Error)");
+        double saldo = 100.0;
+        double retirar = 150.0;
+        assertTrue((saldo)==100.0);
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testRetirar3(){
+        System.out.println("Test3: Retirar cantidad negativa (Error)");
+        double saldo = 100.0;
+        double retirar = -50.0;
+        assertTrue((saldo)==100.0);
+       //fail("The test case is a prototype.");
+    }
+    
 }
