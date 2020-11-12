@@ -9,7 +9,7 @@ public class Movimiento {
     private double importe;
 
     
-    void Movimiento(int codigo, String operacion, double cantidad) {
+    Movimiento(int codigo, String operacion, double cantidad) {
         this.idMovimiento = codigo;
         this.timeStamp = new Date();
         this.tipo = operacion;

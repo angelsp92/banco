@@ -1,12 +1,26 @@
 
+import java.util.ArrayList;
+
 public class Cuenta {
     private String nCuenta, titular;
+    protected ArrayList<Movimiento> movimientos;
     private double saldo;
+    private int codMovimientos;
 
     Cuenta(String numCuenta, String nombre) {
         this.nCuenta = numCuenta;
         this.titular = nombre;
+        this.movimientos = new ArrayList<Movimiento>();
         this.saldo = 0;
+        this.codMovimientos = 1;
+    }
+    
+    double getSaldo() {
+        return this.saldo;
+    }
+    
+    void setSaldo(double cantidad) {
+       this.saldo += cantidad;
     }
 
     void ingresar(double cantidad) {
@@ -14,16 +28,12 @@ public class Cuenta {
             System.out.println("Error: Debes introducir una cantidad positiva para ingresar.");
         }
         else {
-            this.setSaldo(1000.0);
-        }
-    }
+            Movimiento m = new Movimiento(this.codMovimientos, "Ingreso", cantidad);
+            this.movimientos.add(m);
+            this.codMovimientos++;
 
-    double getSaldo() {
-        return this.saldo;
-    }
-    
-    void setSaldo(double cantidad) {
-       this.saldo += cantidad;
+            this.setSaldo(cantidad);
+        }
     }
 
     void retirar(double cantidad) {
@@ -34,7 +44,11 @@ public class Cuenta {
             System.out.println("Error: Saldo insuficiente (Saldo actual: " + this.getSaldo() + ")");
         }
         else {
-            this.setSaldo(-500);
+            Movimiento m = new Movimiento(this.codMovimientos, "Retirar", -cantidad);
+            this.movimientos.add(m);
+            this.codMovimientos++;
+
+            this.setSaldo(-cantidad);
         }
     }
 }
