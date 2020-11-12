@@ -14,7 +14,7 @@ public class CuentaTest {
     @BeforeClass
     public static void setUpClass() {
         System.out.println("Inicio Clase CuentaTest");
-        c = new Cuenta();
+        c = new Cuenta("1111.2222.33.1234567890", "Fulano de tal");
     }
     
     @AfterClass
@@ -24,46 +24,36 @@ public class CuentaTest {
     @Test
     public void testIngresar1() {
         System.out.println("Test1: Ingresar cantidad positica");
-        double saldo = 0;
-        double ingreso = 100.0;
-        assertTrue((saldo+ingreso)==100.0);
-        //fail("The test case is a prototype.");
+        c.ingresar(1000.0);
+        assertTrue(c.getSaldo() == 1000.0);
     }
     
     @Test
     public void testIngresar2() {
         System.out.println("Test2: Ingresar cantidad negativa (Error)");
-        double saldo = 0;
-        double ingreso = -100.0;
-        assertTrue((saldo)==0.0);
-        //fail("The test case is a prototype.");
+        c.ingresar(-1000.0);
+        assertTrue(c.getSaldo() == 1000.0);
     }
     
     @Test
     public void testRetirar1(){
         System.out.println("Test3: Retirar cantidad positiva menos saldo actual");
-        double saldo = 100.0;
-        double retirar = 50.0;
-        assertTrue((saldo-retirar)==50.0);
-        //fail("The test case is a prototype.");
+        c.retirar(500.0);
+        assertTrue(c.getSaldo() == 500.0);
     }
     
     @Test
     public void testRetirar2(){
         System.out.println("Test4: Retirar cantidad positiva mayor saldo actual (Error)");
-        double saldo = 100.0;
-        double retirar = 150.0;
-        assertTrue((saldo)==100.0);
-        //fail("The test case is a prototype.");
+        c.retirar(700.0);
+        assertTrue(c.getSaldo() == 500.0);
     }
     
     @Test
     public void testRetirar3(){
         System.out.println("Test3: Retirar cantidad negativa (Error)");
-        double saldo = 100.0;
-        double retirar = -50.0;
-        assertTrue((saldo)==100.0);
-       //fail("The test case is a prototype.");
+        c.retirar(-50.0);
+        assertTrue(c.getSaldo() == 500.0);
     }
     
 }
