@@ -1,6 +1,4 @@
 
-import java.util.ArrayList;
-
 public class Cuenta {
     private String nCuenta, titular;
     private double saldo;
@@ -22,6 +20,10 @@ public class Cuenta {
 
     double getSaldo() {
         return this.saldo;
+    }
+    
+    void setSaldo(double cantidad) {
+       this.saldo += cantidad;
     }
 
     void retirar(double cantidad) {
